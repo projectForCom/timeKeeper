@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>タグ管理</title>
+</head>
+
+<body>
+	<select class="form-control" id="exampleSelect" name="fselect">
+		<option value="0"></option>
+		<option th:each="tag : ${tags}" th:value="${tag.id}"
+			th:text="${tag.name}">仕事</option>
+	</select>
+</body>
+</html>
