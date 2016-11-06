@@ -41,7 +41,12 @@ public class TagController {
     return "redirect:/tag/";
   }
 
-
+  @RequestMapping(value = "/delete/", method = RequestMethod.POST)
+  public String delete(@RequestParam Long id) {
+    LOGGER.info("here: TagController.delete");
+    tagService.delete(id);
+    return "redirect:/tag/";
+  }
 
   private Tag toTag(String name, Long id) {
     Tag tag = new Tag();

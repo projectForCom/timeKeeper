@@ -29,7 +29,11 @@ public class TagServiceImpl implements TagService {
   @Override
   public void update(Tag tag) {
     databaseMock.update(tag);
+  }
 
+  @Override
+  public void delete(Long id) {
+    databaseMock.delete(id);
   }
 
   // FIXME add class and replace this mock
@@ -50,6 +54,11 @@ public class TagServiceImpl implements TagService {
       Tag targetTag = tags.stream().filter(e -> e.getId().equals(tag.getId())).findAny().get();
       tags.remove(targetTag);
       tags.add(tag);
+    }
+
+    private static void delete(Long id) {
+      Tag targetTag = tags.stream().filter(e -> e.getId().equals(id)).findAny().get();
+      tags.remove(targetTag);
     }
   }
 

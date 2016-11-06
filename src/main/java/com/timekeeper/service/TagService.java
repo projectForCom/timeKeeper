@@ -11,4 +11,6 @@ public interface TagService {
   public void save(Tag tag);
 
   public void update(Tag tag);
+
+  public void delete(Long id);
 }
