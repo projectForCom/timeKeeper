@@ -27,10 +27,11 @@ repositories {
 
 
 dependencies {
-//	compile('org.springframework.boot:spring-boot-starter-data-jpa')
-//	compile('org.mybatis.spring.boot:mybatis-spring-boot-starter:1.1.1')
+	compile group: 'org.postgresql', name: 'postgresql', version: '9.4.1211'
+
+	compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
 	compile('org.springframework.boot:spring-boot-starter-web')
-//	runtime('org.postgresql:postgresql')
+	runtime('org.postgresql:postgresql')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
