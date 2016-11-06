@@ -30,12 +30,22 @@ public class TagController {
   @RequestMapping(value = "/save/", method = RequestMethod.POST)
   public String save(@RequestParam String name) {
     LOGGER.info("here: TagController.save");
-    tagService.save(toTag(name));
+    tagService.save(toTag(name, 0L));
     return "redirect:/tag/";
   }
 
-  private Tag toTag(String name) {
+  @RequestMapping(value = "/update/", method = RequestMethod.POST)
+  public String update(@RequestParam String name, @RequestParam Long id) {
+    LOGGER.info("here: TagController.update");
+    tagService.update(toTag(name, id));
+    return "redirect:/tag/";
+  }
+
+
+
+  private Tag toTag(String name, Long id) {
     Tag tag = new Tag();
+    tag.setId(id);
     tag.setName(name);
     tag.setUserId(0L);
     tag.setColorId(0L);

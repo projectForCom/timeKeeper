@@ -26,6 +26,12 @@ public class TagServiceImpl implements TagService {
     databaseMock.save(tag);
   }
 
+  @Override
+  public void update(Tag tag) {
+    databaseMock.update(tag);
+
+  }
+
   // FIXME add class and replace this mock
   private static class databaseMock {
     private static List<Tag> tags = new ArrayList<>();
@@ -39,5 +45,12 @@ public class TagServiceImpl implements TagService {
       tag.setId(maxId.orElse(0L) + 1);
       tags.add(tag);
     }
+
+    private static void update(Tag tag) {
+      Tag targetTag = tags.stream().filter(e -> e.getId().equals(tag.getId())).findAny().get();
+      tags.remove(targetTag);
+      tags.add(tag);
+    }
   }
+
 }

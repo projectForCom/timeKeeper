@@ -7,17 +7,33 @@
 
 <body>
 	<div>
-		タグの一覧 <select class="form-control" id="exampleSelect" name="fselect">
+		タグの一覧 <select id="tagList">
 			<option value="0"></option>
 			<option th:each="tag : ${tags}" th:value="${tag.id}"
 				th:text="${tag.name}">仕事</option>
 		</select>
 	</div>
+
 	<div>
-		<form action="/tag/save/" method="post">
+		<form action="/tag/save/" method="post" id="tagFormSave">
 			新規タグの登録 <input type="text" name="name" /><input type="submit"
 				value="登録" />
 		</form>
 	</div>
+
+	<div>
+		<form action="/tag/update/" method="post" id="tagFormUpdate">
+			<span id="tagFormUpdateLabel"></span>タグの更新<input type="text"
+				name="name" /> <input type="hidden" name="id" /> <input
+				type="submit" value="更新" />
+		</form>
+	</div>
+
+
+
+
+	<script type="text/javascript"
+		src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script type="text/javascript" src="/tag.js"></script>
 </body>
 </html>
