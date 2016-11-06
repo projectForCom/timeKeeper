@@ -1,7 +1,9 @@
 package com.timekeeper.service.impl;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,17 +21,23 @@ public class TagServiceImpl implements TagService {
     return databaseMock.findAllTags();
   }
 
+  @Override
+  public void save(Tag tag) {
+    databaseMock.save(tag);
+  }
 
   // FIXME add class and replace this mock
   private static class databaseMock {
-    private static List<Tag> tags;
-
-    private databaseMock() {
-      tags = new ArrayList<>();
-    }
+    private static List<Tag> tags = new ArrayList<>();
 
     private static List<Tag> findAllTags() {
       return tags;
+    }
+
+    private static void save(Tag tag) {
+      Optional<Long> maxId = tags.stream().map(e -> e.getId()).max(Comparator.naturalOrder());
+      tag.setId(maxId.orElse(0L) + 1);
+      tags.add(tag);
     }
   }
 }
